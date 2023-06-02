@@ -8,25 +8,35 @@ public class VfxInputs : MonoBehaviour
 
 {
     public VisualEffect effect;
-    public Slider slider; 
+    public string vfxIntVariable = "emission";
+    public string vfxFloatVariable = "attraction";
+    
+    public Slider sliderInt; 
+    public Slider sliderFloat; 
 
-    void UpdateVelocity()
+
+
+    void UpdateFloatVariable()
     {   
-        Vector3 vecA = new Vector3(-1,-1,0);
-        Vector3 vecB = new Vector3(1,1,0);
-        effect.SetVector3("velocityRangeA", slider.value * vecA);
-        effect.SetVector3("velocityRangeB", slider.value * vecB);
+        effect.SetFloat(vfxFloatVariable, sliderFloat.value);
+    }
+    
+    void UpdateIntVariable()
+    {   
+        effect.SetInt(vfxIntVariable, (int) sliderInt.value);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        UpdateVelocity();   
+        UpdateFloatVariable();   
+        UpdateIntVariable();
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateVelocity(); 
+        UpdateFloatVariable(); 
+        UpdateIntVariable();
     }
 }
